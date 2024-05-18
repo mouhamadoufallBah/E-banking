@@ -1,0 +1,15 @@
+{
+    "name": "moohamad/e-banking-api",
+    "autoload": {
+        "psr-4": {
+            "Moohamad\\EBankingApi\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "mouhamadoufallbah",
+            "email": "mouhamadoufall.bah@gmail.com"
+        }
+    ],
+    "require": {}
+}
