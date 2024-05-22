@@ -1,1 +1,159 @@
 /* You can add global styles to this file, and also import other style files */
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+* {
+  box-sizing: border-box;
+}
+
+main {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .loginWrapper {
+    width: 40%;
+    min-height: 50%;
+    border-radius: 13px;
+    background-color: white;
+    // overflow: hidden;
+    padding: 2.5rem;
+    box-shadow: 6px 0px 51px 1px rgba(0,0,0,0.15);
+
+
+    h1 {
+      font-size: 1.8rem;
+      text-align: center;
+    }
+
+    .btnRegister {
+      cursor: pointer;
+
+      button {
+        background-color: transparent;
+        border: none;
+      }
+    }
+  }
+
+  .wrapper {
+    width: 85%;
+    height: 90%;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    border-radius: 13px;
+    // background-color: red;
+    overflow: hidden;
+    box-shadow: 6px 0px 51px 1px rgba(0,0,0,0.15);
+
+
+    .sidebar {
+      background-color: #001E2B;
+      padding: 2rem 1rem;
+      border-top-right-radius: 2rem;
+      border-bottom-right-radius: 2rem;
+      // box-shadow: 2Px 0px 51px 0.01px #001E2B;
+      z-index: 10;
+      color: white;
+
+      .sidebarTopWrapper {
+        width: 100%;
+        height: 25%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        // background-color: #ffff;
+
+        .profilImage {
+          height: 100px;
+          width: 100px;
+          border-radius: 50%;
+          background-color: transparent;
+          background-image: url('https://png.pngtree.com/png-clipart/20230927/original/pngtree-man-avatar-image-for-profile-png-image_13001882.png');
+          background-position: center;
+          background-size: contain;
+        }
+
+        .profilInfo {
+          width: 62%;
+          display: flex;
+          justify-content: space-between;
+
+
+          .profilInfoLeft {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            h4 {
+              font-size: 1rem;
+              font-weight: 600;
+            }
+
+            h5 {
+              font-size: 1rem;
+              font-weight: 400;
+            }
+          }
+
+          .profilInfoRigth{
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            width: 30%;
+
+            i{
+              font-size: 1.3rem;
+            }
+          }
+
+        }
+      }
+
+      .sidebarMenu{
+        height: 60%;
+
+        ul{
+          // background-color: #ffff;
+          height: 30%;
+          display: flex;
+          flex-direction: column;
+          li{
+            height: 30%;
+            border-radius: 6px;
+            padding: 0.3rem 0.6rem;
+            margin-bottom: 0.7rem;
+
+            &:hover{
+              background-color: rgb(22 78 99);
+              color: white;
+            }
+
+            &::after{
+              content: "";
+              height: 100px;
+              width: 10px;
+              background-color: #ffff ;
+              position: relative;
+              top: 0;
+              right: -75%;
+            }
+
+            &.active{
+              background-color: rgb(22 78 99);
+              color:white;
+
+            }
+          }
+        }
+      }
+    }
+
+    .main {
+      background-color: #ffff;
+      padding: 2rem 1.5rem;
+    }
+  }
+}

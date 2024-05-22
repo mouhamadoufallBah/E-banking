@@ -1,0 +1,118 @@
+<div class="homeWrapper">
+  <div class="homeWrapperTop">
+    @if (utilisateur) {
+    <div class="homeWrapperTopItem">
+      <div class="homeWrapperTopItemIcon">
+        <i class="bi bi-currency-dollar text-success me-3"></i>
+        Solde
+      </div>
+      <div class="homeWrapperTopItemText">
+        <span class="fs-5 me-3">{{ utilisateur.solde }}</span>
+      </div>
+    </div>
+    <div class="homeWrapperTopItem">
+      <div class="homeWrapperTopItemIcon">
+        <i class="bi bi-graph-up-arrow text-success me-3"></i>
+        Sortie
+      </div>
+      <div class="homeWrapperTopItemText">
+        <span class="fs-5 me-3">{{ utilisateur.total_sortie }}</span>
+      </div>
+    </div>
+    <div class="homeWrapperTopItem">
+      <div class="homeWrapperTopItemIcon">
+        <i class="bi bi-graph-down-arrow text-danger me-2"></i>
+        Entrant
+      </div>
+      <div class="homeWrapperTopItemText">
+        <span class="fs-5 me-3">{{ utilisateur.total_entre }}</span>
+      </div>
+    </div>
+  }
+  </div>
+  <div class="homeWrapperBottom">
+    <div class="homeWrapperBottomItem">
+      <h5>Faire une transaction</h5>
+      <div class="container mt-5">
+        <form>
+          <div class="form-row mb-3">
+            <div class="col-md-12 mb-3">
+              <label for="telephone" class="form-label">Téléphone</label>
+              <input
+                type="tel"
+                class="form-control"
+                id="telephone"
+                name="telephone"
+                placeholder="Veuillez saisir le numéro"
+                required
+              />
+              <div class="invalid-feedback">
+                Veuillez entrer un numéro de téléphone valide.
+              </div>
+            </div>
+            <div class="col-md-12">
+              <label for="code_pin" class="form-label">Code PIN</label>
+              <input
+                type="text"
+                class="form-control"
+                id="code_pin"
+                name="code_pin"
+                placeholder="Veuillez saisir le code pin"
+                required
+              />
+              <div class="invalid-feedback">
+                Veuillez entrer un code PIN valide.
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn col-12" style="background-color: rgb(22 78 99); color:white;">
+            Soumettre
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="homeWrapperBottomItem">
+      <div class="d-flex justify-content-between">
+        <h5>Dernière transaction</h5>
+        <div class="form-group mx-sm-3 mb-2">
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="searchQuery"
+            placeholder="Recherche"
+            required
+          />
+        </div>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>twitter</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 <?php
 
 namespace Moohamad\EBankingApi\Model;
+
 require_once("./src/model/BaseModel.php");
 
 class Utilisateurs extends BaseModel
@@ -37,7 +38,17 @@ class Utilisateurs extends BaseModel
 
     public function get($id)
     {
-        $sql = "SELECT * FROM $this->table WHERE id = :id";
+        $sql = "SELECT 
+                u.*, r.nom,
+                (SELECT SUM(t1.montant) 
+                FROM transactions t1 
+                WHERE t1.expediteur_id = u.id) AS total_sortie,
+                (SELECT SUM(t2.montant) 
+                FROM transactions t2 
+                WHERE t2.destinataire_id = u.id) AS total_entre
+                FROM utilisateurs u
+                left join roles r on r.id = u.id_role
+                WHERE u.id = :id;";
 
         $req = $this->connexion->prepare($sql);
         $req->execute([':id' => $id]);
@@ -67,6 +78,24 @@ class Utilisateurs extends BaseModel
         }
     }
 
+    public function updateSolde(int $id, int $solde)
+    {
+        $sql = "UPDATE $this->table SET solde=:solde WHERE id=:id";
+
+        $req =  $this->connexion->prepare($sql);
+
+        $result = $req->execute([
+            ":solde" => $solde,
+            "id" => $id
+        ]);
+
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function delete()
     {
         $sql = "DELETE FROM $this->table WHERE id= :id";
@@ -82,12 +111,14 @@ class Utilisateurs extends BaseModel
         }
     }
 
-    public function login(string $email, string $password)
+    public function login(string $telephone, string $password)
     {
-        $sql = "SELECT * FROM $this->table where email = :email";
+        $sql = "SELECT u.*, r.nom FROM $this->table u
+                left join roles r on r.id = u.id_role
+                where telephone = :telephone";
 
         $stmt = $this->connexion->prepare($sql);
-        $stmt->execute(['email' => $email]);
+        $stmt->execute(['telephone' => $telephone]);
         $user = $stmt->fetch();
         if (!$user) {
             return false;

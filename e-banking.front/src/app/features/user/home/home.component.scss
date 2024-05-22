@@ -1,0 +1,73 @@
+:host{
+  .homeWrapper{
+    // background-color: red;
+    height: 100%;
+    border-radius: 12px;
+    display: grid;
+    grid-template-rows: 1fr 3fr;
+
+    .homeWrapperTop{
+      // background-color: wheat;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.4rem;
+      padding: 1rem;
+
+      .homeWrapperTopItem{
+        background-color: #001E2B;
+        border-radius: 8px;
+        box-shadow: 10px 10px 76px 35px rgba(0,0,0,0.06);
+        display: grid;
+        grid-template-columns: 2fr 2fr;
+
+        .homeWrapperTopItemIcon{
+          // background-color: red;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: white;
+
+          i{
+            font-size: 1.8rem;
+          }
+        }
+
+        .homeWrapperTopItemText{
+          display: flex;
+          justify-content: start;
+          align-items: center;
+          color: white;
+        }
+
+      }
+    }
+
+
+    .homeWrapperBottom{
+      // background-color: wheat;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 1.4rem;
+      padding: 1rem;
+
+      .homeWrapperBottomItem{
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 10px 10px 76px 35px rgba(0,0,0,0.06);
+        padding: 1rem;
+        // color: white;
+
+        table{
+          border-radius: 6px;
+          overflow: hidden;
+
+          // th, td{
+          //   border: none;
+          //   background-color: #1F1F1F;
+          //   color: white;
+          // }
+        }
+      }
+    }
+  }
+}

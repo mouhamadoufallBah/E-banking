@@ -1,0 +1,205 @@
+<main>
+  <div class="loginWrapper">
+    <h1>Se connecter</h1>
+    @if (!changeForm) {
+    <form [formGroup]="loginForm">
+      <div class="mb-3">
+        <label for="telephone" class="form-label"
+          >Téléphone <span class="text-danger">*</span>
+        </label>
+        <input
+          type="tel"
+          class="form-control"
+          id="telephone"
+          name="telephone"
+          aria-describedby="telephoneHelp"
+          placeholder="Ex: 77XXXXXXX"
+          formControlName="telephone"
+          [ngClass]="{
+            'is-invalid': submitLoginForm && loginFomElement.telephone.errors,
+            'is-valid': submitLoginForm && !loginFomElement.telephone.errors
+          }"
+        />
+        <div class="invalid-feedback text-sm">
+          Le numéro de téléphone doit commencer par 77, 78 ou 76 et avoir une
+          longueur totale de 9 chiffres.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="motDePasse" class="form-label"
+          >Mot de passe <span class="text-danger">*</span>
+        </label>
+        <div class="input-group">
+          <input
+            type="{{ passwordInputState ? 'text' : 'password' }}"
+            id="password"
+            class="form-control"
+            name="password"
+            placeholder="********"
+            formControlName="password"
+            aria-describedby="password-constraints"
+            formControlName="password"
+            [ngClass]="{
+              'is-invalid': submitLoginForm && loginFomElement.password.errors,
+              'is-valid': submitLoginForm && !loginFomElement.password.errors
+            }"
+          />
+          <div
+            class="input-group-text"
+            (click)="togglePassword()"
+            style="cursor: pointer"
+          >
+            <span
+              [ngClass]="{
+                'bi-eye': !passwordInputState,
+                'bi-eye-slash': passwordInputState
+              }"
+            ></span>
+          </div>
+          <div class="invalid-feedback">
+            Le mot de passe doit contenir minimum 6 caractère
+          </div>
+        </div>
+      </div>
+      <button
+        class="btn btn-sm btn-primary col-12 mb-2"
+        (click)="onSubmitLoginForm()"
+      >
+        Connexion
+      </button>
+      <div class="text-end text-primary d-flex justify-content-end btnRegister">
+        <button class="text-primary" (click)="onChangeForm()">
+          S'inscrire
+        </button>
+      </div>
+    </form>
+    }@else {
+    <form [formGroup]="RegisterForm">
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="nomComplet" class="form-label"
+            >Nom Complet <span class="text-danger">*</span>
+          </label>
+          <input
+            type="text"
+            class="form-control"
+            id="nomComplet"
+            name="nomComplet"
+            placeholder="Ex: Issa Diop"
+            formControlName="nomComplet"
+            [ngClass]="{
+              'is-invalid':
+                submitRegisterForm && registerFomElement.nomComplet.errors,
+              'is-valid':
+                submitRegisterForm && !registerFomElement.nomComplet.errors
+            }"
+          />
+          <div class="invalid-feedback">Veuillez entrer votre nom complet.</div>
+        </div>
+        <div class="col-md-6">
+          <label for="telephone" class="form-label"
+            >Téléphone <span class="text-danger">*</span>
+          </label>
+          <input
+            type="tel"
+            class="form-control"
+            id="telephone"
+            name="telephone"
+            placeholder="Ex: 77XXXXXXX"
+            formControlName="telephone"
+            [ngClass]="{
+              'is-invalid':
+                submitRegisterForm && registerFomElement.telephone.errors,
+              'is-valid':
+                submitRegisterForm && !registerFomElement.telephone.errors
+            }"
+          />
+          <div class="invalid-feedback text-sm">
+            Le numéro de téléphone doit commencer par 77, 78 ou 76 et avoir une
+            longueur totale de 9 chiffres.
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="telephone" class="form-label"
+            >Mot de passe <span class="text-danger">*</span>
+          </label>
+          <div class="input-group">
+            <input
+              type="{{ passwordInputState ? 'text' : 'password' }}"
+              id="password"
+              class="form-control"
+              name="password"
+              placeholder="*******"
+              aria-describedby="password-constraints"
+              formControlName="password"
+              [ngClass]="{
+                'is-invalid':
+                  submitRegisterForm && registerFomElement.password.errors,
+                'is-valid':
+                  submitRegisterForm && !registerFomElement.password.errors
+              }"
+            />
+            <div
+              class="input-group-text"
+              (click)="togglePassword()"
+              style="cursor: pointer"
+            >
+              <span
+                [ngClass]="{
+                  'bi-eye': !passwordInputState,
+                  'bi-eye-slash': passwordInputState
+                }"
+              ></span>
+            </div>
+            <div class="invalid-feedback">
+              Le mot de passe doit contenir minimum 6 caractère
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="code_pin" class="form-label"
+            >Code PIN <span class="text-danger">*</span>
+          </label>
+          <input
+            type="text"
+            class="form-control"
+            id="code_pin"
+            name="code_pin"
+            placeholder="****"
+            formControlName="code_pin"
+            [ngClass]="{'is-invalid': submitRegisterForm && registerFomElement.code_pin.errors, 'is-valid': submitRegisterForm && !registerFomElement.code_pin.errors}"
+          />
+          <div class="invalid-feedback">
+            Veuillez entrer un code PIN valide.
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-12">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            placeholder="Ex: xxx@xxx.com"
+            formControlName="email"
+            [ngClass]="{'is-invalid': submitRegisterForm && registerFomElement.email.errors, 'is-valid': submitRegisterForm && !registerFomElement.email.errors}"
+          />
+          <div class="invalid-feedback">Veuillez entrer un email valide.</div>
+        </div>
+      </div>
+      <button (click)="onSubmitRegisterForm()" class="btn btn-primary col-12 mb-2">
+        S'inscrire
+      </button>
+    </form>
+    <div class="text-end text-primary d-flex justify-content-end btnRegister">
+      <button class="text-primary" (click)="onChangeForm()">S'inscrire</button>
+    </div>
+
+    }
+  </div>
+</main>

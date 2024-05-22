@@ -1,0 +1,23 @@
+@if (utilisateur) {
+  <div class="sidebarTopWrapper mb-3">
+    <div class="profilImage"></div>
+
+    <div class="profilInfo">
+     <div class="profilInfoLeft">
+      <h4>{{ utilisateur.nomComplet }}</h4>
+      <h5>{{ utilisateur.nom }}</h5>
+     </div>
+     <div class="profilInfoRigth">
+      <i class="bi bi-bell"></i>
+     </div>
+    </div>
+  </div>
+
+  <div class="sidebarMenu">
+    <ul class="list-unstyled">
+      <li class="active">Acceuil</li>
+      <li>Profil</li>
+    </ul>
+
+  </div>
+}

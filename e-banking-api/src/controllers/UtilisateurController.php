@@ -1,8 +1,9 @@
 <?php
 
+
 use const Moohamad\EBankingApi\Core\SECRET;
 
-header('Access-Control-Allow-Origin: http://localhost:4200');
+header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 header('Access-Control-Allow-Credentials: true');
 
@@ -36,7 +37,42 @@ class UtilisateurController
                 ]);
             } else {
                 echo json_encode(
-                    ['message' => "Aucun Admin disponible"]
+                    ['message' => "Aucun Utilsateur disponible"]
+                );
+            }
+        } else {
+            http_response_code(405);
+            echo json_encode(
+                ['message' => "Ce methode n'est pas autorisée"]
+            );
+        }
+    }
+
+    public function get(int $id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === "GET") {
+            $database = new Moohamad\EBankingApi\Core\Database();
+
+            $db = $database->getConnexion();
+
+            $user = new Moohamad\EBankingApi\Model\Utilisateurs($db);
+
+            $statement = $user->get($id);
+
+            if ($statement->rowCount() > 0) {
+                $data = $statement->fetch();
+
+                http_response_code(200);
+
+                echo json_encode(
+                    [
+                        "data" => $data,
+                        "status_code" => 200
+                    ]
+                );
+            } else {
+                echo json_encode(
+                    ['message' => "Aucun Utilsateur disponible"]
                 );
             }
         } else {
@@ -58,11 +94,11 @@ class UtilisateurController
             $user = new Moohamad\EBankingApi\Model\Utilisateurs($db);
 
             $data = json_decode(file_get_contents("php://input"));
-            if (!empty($data->email) && !empty($data->password)) {
-                $user->email = htmlspecialchars($data->email);
+            if (!empty($data->telephone) && !empty($data->password)) {
+                $user->telephone = htmlspecialchars($data->telephone);
                 $user->password = htmlspecialchars($data->password);
 
-                $result = $user->login($data->email, $data->password);
+                $result = $user->login($data->telephone, $data->password);
 
                 if ($result) {
                     $header = [
@@ -114,6 +150,8 @@ class UtilisateurController
                 $user->id_role = intval($data->id_role);
 
                 $result = $user->dynamicInsert();
+
+                http_response_code(200);
 
                 echo json_encode(
                     [
